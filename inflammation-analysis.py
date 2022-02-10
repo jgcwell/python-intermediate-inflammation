@@ -13,24 +13,26 @@ def main(args):
     - selecting the necessary models and views for the current task
     - passing data between models and views
     """
-    InFiles = args.infiles
-    if not isinstance(InFiles, list):
-        InFiles = [args.infiles]
+    infile = args.infiles
+    if not isinstance(infile, list):
+        infile = [args.infiles]
 
-
-    for filename in InFiles:
+    for filename in infile:
         inflammation_data = models.load_csv(filename)
 
-        view_data = {'average': models.daily_mean(inflammation_data), 'max': models.daily_max(inflammation_data), 'min': models.daily_min(inflammation_data)}
+        view_data = {'average': models.daily_mean(inflammation_data),
+                     'max': models.daily_max(inflammation_data),
+                     'min': models.daily_min(inflammation_data)}
 
         views.visualize(view_data)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='A basic patient inflammation data management system')
 
     parser.add_argument(
-        'infiles',
+        'infile',
         nargs='+',
         help='Input CSV(s) containing inflammation series for each patient')
 
