@@ -9,7 +9,6 @@ jobs:
   build:
 
     # we can also specify the OS to run tests on
-...
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -28,4 +27,3 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-...
